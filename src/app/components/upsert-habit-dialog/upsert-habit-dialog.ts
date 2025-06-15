@@ -74,7 +74,7 @@ export class UpsertHabitDialog {
     })
 
     constructor() {
-        this.context.data.startValue && this.form.patchValue(this.context.data.startValue)
+        this.context.data?.startValue && this.form.patchValue(this.context.data.startValue)
     }
 
     closeDialog() {
