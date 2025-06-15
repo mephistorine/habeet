@@ -1,0 +1,41 @@
+<tui-app-bar>
+    <button tuiButton type="button" tuiSlot="left" (click)="closeDialog()">Close</button>
+    New habit
+    <button tuiButton type="button" tuiSlot="right" (click)="closeWithResult()">Done</button>
+</tui-app-bar>
+
+<form tuiForm="l" [formGroup]="form">
+    <tui-textfield>
+        <label tuiLabel>Name</label>
+        <input
+            formControlName="name"
+            type="text"
+            tuiTextfield
+        />
+    </tui-textfield>
+
+    <tui-error
+        formControlName="name"
+        [error]="[] | tuiFieldError | async"
+    />
+
+    <tui-textfield>
+        <label tuiLabel>Description</label>
+        <input
+            formControlName="description"
+            type="text"
+            tuiTextfield
+        />
+    </tui-textfield>
+
+    <tui-error
+        formControlName="description"
+        [error]="[] | tuiFieldError | async"
+    />
+
+    <div class="colors-selector">
+        @for (color of colors(); track color.name) {
+            <button type="button" class="color" [class.is-selected]="selectedColor().value === color.name" [style.--color]="color.hex" (click)="selectColor(color.name)"></button>
+        }
+    </div>
+</form>

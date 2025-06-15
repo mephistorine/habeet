@@ -1,0 +1,39 @@
+<div class="wrapper">
+    <form [formGroup]="form" tuiForm="l" (ngSubmit)="tryToLogin($event)">
+        <header tuiHeader>
+            <h1 tuiTitle>Login</h1>
+        </header>
+
+        <tui-textfield>
+            <label tuiLabel>Email</label>
+            <input
+                formControlName="email"
+                type="email"
+                tuiTextfield
+            />
+        </tui-textfield>
+
+        <tui-error
+            formControlName="email"
+            [error]="[] | tuiFieldError | async"
+        />
+
+        <tui-textfield>
+            <label tuiLabel>Password</label>
+            <input
+                formControlName="password"
+                type="password"
+                tuiTextfield
+            />
+        </tui-textfield>
+
+        <tui-error
+            formControlName="password"
+            [error]="[] | tuiFieldError | async"
+        />
+
+        <footer>
+            <button type="submit" tuiButton="m" [loading]="isLoading()">Login</button>
+        </footer>
+    </form>
+</div>

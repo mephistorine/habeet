@@ -1,0 +1,61 @@
+<tui-app-bar>
+    Habeet
+
+    <button
+        tuiButton
+        tuiSlot="right"
+        type="button"
+        (click)="openHabitCreateDialog()"
+    >
+        New habit
+    </button>
+</tui-app-bar>
+
+<div class="wrapper">
+    <main>
+        @if (isLoading()) {
+            <tui-loader />
+        } @else {
+            @for (habit of habits(); track habit.id) {
+                <article
+                    tuiAppearance="floating"
+                    tuiCardLarge="compact"
+                >
+                    <header tuiHeader="body-xl">
+                        <hgroup tuiTitle="m">
+                            <h3>{{ habit.name }}</h3>
+                            <p tuiSubtitle>{{ habit.description }}</p>
+                        </hgroup>
+
+                        <aside tuiAccessories>
+                            <div (click)="markTodayAsCompleted(habit.id)">
+                                <input
+                                    tuiCheckbox
+                                    type="checkbox"
+                                    [checked]="habit.isChecked"
+                                />
+                            </div>
+                        </aside>
+                    </header>
+
+                    <div class="calendar">
+                        @for (day of days; track $index; let isLast = $last) {
+                            @let formattedDay = formatToDateString(day);
+                            @if (isLast) {
+                                <div class="day" [attr.data-time]="formattedDay" [class.is-active]="habit.checkedDays.has(formattedDay)" scrollIntoView></div>
+                            } @else {
+                                <div class="day" [attr.data-time]="formattedDay" [class.is-active]="habit.checkedDays.has(formattedDay)"></div>
+                            }
+                        }
+                    </div>
+
+                    <footer class="habit-footer">
+                        <button type="button" tuiButton appearance="secondary-destructive" size="s" (click)="deleteHabit(habit.id)">Delete</button>
+                        <button type="button" tuiButton appearance="secondary" size="s" (click)="editCheckedDays(habit.id)">Calendar</button>
+                        <button type="button" tuiButton appearance="secondary" size="s" (click)="openEditHabitDialog(habit.id)">Edit</button>
+                    </footer>
+                </article>
+            }
+        }
+    </main>
+</div>

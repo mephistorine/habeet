@@ -1,0 +1,35 @@
+header {
+    margin-block-end: 1rem;
+    position: sticky;
+    top: 0;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(52, 10px);
+    grid-template-rows: repeat(7, 10px);
+    grid-auto-flow: column;
+    gap: 3px;
+    overflow-x: auto;
+}
+
+.calendar .day {
+    background: var(--tui-background-base-alt);
+    border-radius: 0.125rem;
+}
+
+.calendar .day.is-active {
+    background: var(--ha-active-day, var(--tui-background-accent-1));
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.habit-footer {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: end;
+}
