@@ -5,6 +5,7 @@ import {
 } from "@angular/core";
 import {provideAnimations} from "@angular/platform-browser/animations";
 import {provideRouter} from "@angular/router";
+import {TUI_PLATFORM} from "@taiga-ui/cdk";
 import {provideEventPlugins} from "@taiga-ui/event-plugins";
 
 import {routes} from "./app.routes";
@@ -16,5 +17,9 @@ export const appConfig: ApplicationConfig = {
         provideZoneChangeDetection({eventCoalescing: true}),
         provideRouter(routes),
         provideEventPlugins(),
+        {
+            provide: TUI_PLATFORM,
+            useValue: "web"
+        }
     ],
 };

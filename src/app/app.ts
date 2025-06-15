@@ -1,11 +1,10 @@
 import {ChangeDetectionStrategy, Component, inject} from "@angular/core";
 import {RouterOutlet} from "@angular/router";
-import {TuiPlatform} from "@taiga-ui/cdk";
 import {TUI_DARK_MODE, TuiRoot} from "@taiga-ui/core";
 
 @Component({
     selector: "ha-root",
-    imports: [TuiRoot, RouterOutlet, TuiPlatform],
+    imports: [TuiRoot, RouterOutlet],
     templateUrl: "./app.html",
     styleUrl: "./app.css",
     changeDetection: ChangeDetectionStrategy.OnPush,
