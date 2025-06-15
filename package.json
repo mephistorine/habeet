@@ -1,61 +1,62 @@
 {
-    "name": "habeet",
-    "version": "0.0.0",
-    "scripts": {
-        "ng": "ng",
-        "start": "ng serve",
-        "start:open": "ng serve --host 0.0.0.0",
-        "build": "ng build",
-        "watch": "ng build --watch --configuration development",
-        "test": "ng test"
-    },
-    "private": true,
-    "dependencies": {
-        "@angular/cdk": "^20.0.0",
-        "@angular/common": "^20.0.0",
-        "@angular/compiler": "^20.0.0",
-        "@angular/core": "^20.0.0",
-        "@angular/forms": "^20.0.0",
-        "@angular/platform-browser": "^20.0.0",
-        "@angular/router": "^20.0.0",
-        "@ng-web-apis/common": "4.12.0",
-        "@supabase/supabase-js": "2.50.0",
-        "@taiga-ui/addon-charts": "^4.39.2",
-        "@taiga-ui/addon-mobile": "^4.39.2",
-        "@taiga-ui/cdk": "^4.39.2",
-        "@taiga-ui/core": "^4.39.2",
-        "@taiga-ui/event-plugins": "^4.0.2",
-        "@taiga-ui/icons": "^4.39.2",
-        "@taiga-ui/kit": "^4.39.2",
-        "@taiga-ui/layout": "^4.39.2",
-        "@taiga-ui/polymorpheus": "4.9.0",
-        "date-fns": "4.1.0",
-        "es-toolkit": "1.39.3",
-        "immer": "10.1.1",
-        "ngxtension": "5.0.0",
-        "ngxtension-plugin": "5.0.0",
-        "rxjs": "~7.8.0",
-        "tslib": "^2.3.0",
-        "zone.js": "~0.15.0"
-    },
-    "devDependencies": {
-        "@angular/build": "^20.0.1",
-        "@angular/cli": "^20.0.1",
-        "@angular/compiler-cli": "^20.0.0",
-        "@types/jasmine": "~5.1.0",
-        "jasmine-core": "~5.7.0",
-        "karma": "~6.4.0",
-        "karma-chrome-launcher": "~3.2.0",
-        "karma-coverage": "~2.2.0",
-        "karma-jasmine": "~5.1.0",
-        "karma-jasmine-html-reporter": "~2.1.0",
-        "less": "4.3.0",
-        "supabase": "^2.24.3",
-        "typescript": "~5.8.2"
-    },
-    "overrides": {
-        "@supabase/supabase-js": {
-            "@supabase/auth-js": "2.61.0"
-        }
+  "name": "habeet",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "start:open": "ng serve --host 0.0.0.0",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/cdk": "^20.0.0",
+    "@angular/common": "^20.0.0",
+    "@angular/compiler": "^20.0.0",
+    "@angular/core": "^20.0.0",
+    "@angular/forms": "^20.0.0",
+    "@angular/platform-browser": "^20.0.0",
+    "@angular/router": "^20.0.0",
+    "@angular/service-worker": "^20.0.0",
+    "@ng-web-apis/common": "4.12.0",
+    "@supabase/supabase-js": "2.50.0",
+    "@taiga-ui/addon-charts": "^4.39.2",
+    "@taiga-ui/addon-mobile": "^4.39.2",
+    "@taiga-ui/cdk": "^4.39.2",
+    "@taiga-ui/core": "^4.39.2",
+    "@taiga-ui/event-plugins": "^4.0.2",
+    "@taiga-ui/icons": "^4.39.2",
+    "@taiga-ui/kit": "^4.39.2",
+    "@taiga-ui/layout": "^4.39.2",
+    "@taiga-ui/polymorpheus": "4.9.0",
+    "date-fns": "4.1.0",
+    "es-toolkit": "1.39.3",
+    "immer": "10.1.1",
+    "ngxtension": "5.0.0",
+    "ngxtension-plugin": "5.0.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^20.0.1",
+    "@angular/cli": "^20.0.1",
+    "@angular/compiler-cli": "^20.0.0",
+    "@types/jasmine": "~5.1.0",
+    "jasmine-core": "~5.7.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "less": "4.3.0",
+    "supabase": "^2.24.3",
+    "typescript": "~5.8.2"
+  },
+  "overrides": {
+    "@supabase/supabase-js": {
+      "@supabase/auth-js": "2.61.0"
     }
+  }
 }
