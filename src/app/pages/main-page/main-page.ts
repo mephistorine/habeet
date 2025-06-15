@@ -18,19 +18,33 @@ import {
     TuiSheetDialogService,
 } from "@taiga-ui/addon-mobile";
 import {tuiControlValue, TuiDay, tuiInjectElement} from "@taiga-ui/cdk";
-import {TuiAppearance, TuiButton, TuiLoader, TuiTitle} from "@taiga-ui/core";
-import {TUI_CALENDAR_DATE_STREAM, TuiCheckbox} from "@taiga-ui/kit";
+import {
+    TUI_DARK_MODE,
+    TuiAppearance,
+    TuiButton,
+    TuiLoader,
+    TuiTitle,
+} from "@taiga-ui/core";
+import {
+    TUI_CALENDAR_DATE_STREAM,
+    TUI_CONFIRM,
+    TuiCheckbox,
+} from "@taiga-ui/kit";
 import {TuiAppBar, TuiCardLarge, TuiHeader} from "@taiga-ui/layout";
 import {PolymorpheusComponent} from "@taiga-ui/polymorpheus";
 import {isFuture, isSameDay, subDays} from "date-fns";
 import {formatISOWithOptions} from "date-fns/fp";
 import {isEqual, merge} from "es-toolkit";
 import {original, produce} from "immer";
-import {take} from "rxjs";
+import {of, take} from "rxjs";
 import {
     UPSERT_HABIT_DIALOG_POLYMORPHEUS,
 } from "../../components/upsert-habit-dialog/upsert-habit-dialog";
-import {HabitColor, HabitEvent} from "../../database.types";
+import {
+    HABIT_COLOR_NAME_VALUES,
+    HabitColor,
+    HabitEvent,
+} from "../../database.types";
 import {SUPABASE_CLIENT} from "../../supabase";
 
 type Habit = {
@@ -258,6 +272,7 @@ export class MainPage {
     private readonly tuiSheetDialogService = inject(TuiSheetDialogService);
     private readonly destroyRef = inject(DestroyRef);
     private readonly injector = inject(Injector)
+    private readonly tuiDarkMode = inject(TUI_DARK_MODE).asReadonly();
 
     readonly days = createYear();
     readonly formatToDateString = formatToDateString;
@@ -265,6 +280,7 @@ export class MainPage {
     readonly isLoading = computed(() => this.habitsService.state().isLoading);
     readonly habits = computed(() => {
         const {habits} = this.habitsService.state();
+        const theme = this.tuiDarkMode() ? "dark" : "light"
         return habits.map((habit) => {
             return {
                 id: habit.id,
@@ -272,6 +288,9 @@ export class MainPage {
                 description: habit.description,
                 isChecked: habit.events.some(e => isSameDay(e.createTime, new Date())),
                 checkedDays: new Set(habit.events.map(e => formatToDateString(e.createTime))),
+                color: habit.color.type === "enum"
+                    ? HABIT_COLOR_NAME_VALUES[habit.color.value][theme]
+                    : ""
             };
         });
     });
@@ -336,7 +355,19 @@ export class MainPage {
     }
 
     deleteHabit(habitId: string) {
-        this.habitsService.deleteById(habitId)
+        this.tuiSheetDialogService.open<boolean>(TUI_CONFIRM, {
+            label: "Do you want to delete this habit?",
+            data: {
+                yes: "Yes, delete",
+                no: "No",
+            }
+        })
+            .pipe(take(1), takeUntilDestroyed(this.destroyRef))
+            .subscribe((confirmed) => {
+                if (confirmed) {
+                    this.habitsService.deleteById(habitId)
+                }
+            })
     }
 
     editCheckedDays(habitId: string) {
@@ -348,7 +379,7 @@ export class MainPage {
                     providers: [
                         {
                             provide: TUI_CALENDAR_DATE_STREAM,
-                            useValue: tuiControlValue(new FormControl(events.map(e => TuiDay.fromLocalNativeDate(new Date(e.createTime))))),
+                            useValue: of(events.map(e => TuiDay.fromLocalNativeDate(new Date(e.createTime)))),
                         }
                     ],
                     parent: this.injector

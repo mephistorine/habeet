@@ -13,36 +13,36 @@ export const HABIT_COLOR_NAME_VALUES: Record<HabitColorName, {
     light: string
 }> = {
     RED: {
-        dark: "",
+        dark: "#ff0000",
         light: "#ff0000",
     },
     ORANGE: {
-        dark: "",
-        light: "orange",
+        dark: "#FFA500",
+        light: "#FFA500",
     },
     YELLOW: {
-        dark: "",
-        light: "yellow",
+        dark: "#ffd700",
+        light: "#ffe700",
     },
     GREEN: {
-        dark: "",
-        light: "#00ff00",
+        dark: "#03bb03",
+        light: "#03bb03",
     },
     CYAN: {
-        dark: "",
-        light: "cyan",
+        dark: "#00c0ff",
+        light: "#00e2e2",
     },
     BLUE: {
-        dark: "",
-        light: "#0000ff",
+        dark: "#6565ff",
+        light: "#5757fe",
     },
     VIOLET: {
-        dark: "",
-        light: "violet",
+        dark: "#7F00FF",
+        light: "#7F00FF",
     },
     GREY: {
-        dark: "",
-        light: "grey",
+        dark: "#808080",
+        light: "#808080",
     },
 };
 

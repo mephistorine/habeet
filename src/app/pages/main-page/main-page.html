@@ -20,6 +20,7 @@
                 <article
                     tuiAppearance="floating"
                     tuiCardLarge="compact"
+                    [style.--habit-color]="habit.color"
                 >
                     <header tuiHeader="body-xl">
                         <hgroup tuiTitle="m">
@@ -32,6 +33,7 @@
                                 <input
                                     tuiCheckbox
                                     type="checkbox"
+                                    class="habit-check-today"
                                     [checked]="habit.isChecked"
                                 />
                             </div>

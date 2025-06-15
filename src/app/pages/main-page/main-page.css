@@ -19,7 +19,11 @@ header {
 }
 
 .calendar .day.is-active {
-    background: var(--ha-active-day, var(--tui-background-accent-1));
+    background: var(--habit-color, var(--tui-background-accent-1));
+}
+
+.habit-check-today {
+    --t-bg: var(--habit-color);
 }
 
 main {
